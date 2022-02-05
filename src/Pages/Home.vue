@@ -1,34 +1,46 @@
 <template>
-  <div class="flex flex-col items-center">
-    <div class="ml-auto border-2 px-3 rotate-12">
-      <h3 class="text-white text-2xl font-bold float-right">03 FEB</h3>
+  <div class="flex hidden flex-col items-center" id="home">
+    <div class="px-3 ml-auto border-2 rotate-12">
+      <h3 class="float-right text-2xl font-bold text-white">03 FEB</h3>
     </div>
 
-    <div class="text-center font-sans">
-      <h1 class="text-white text-6xl font-bold">Happy</h1>
-      <h1 class="text-white text-6xl font-bold">Birthday</h1>
+    <div class="font-sans text-center">
+      <h1 class="text-6xl font-bold text-white capitalize">{{ heading }}</h1>
     </div>
 
-    <div class="p-12 border-4 border-white rounded-2xl mt-6">
+    <div class="p-12 mt-6 rounded-2xl border-4 border-white">
       <img src="../assets/logo.png" alt="">
     </div>
 
     <div class="mt-6">
-      <h1 class="uppercase text-white text-7xl font-extrabold font-sans">John Doe</h1>
+      <h1 class="font-sans text-7xl font-extrabold text-white uppercase">John Doe</h1>
       <Button title="LCVP, MAC" />
     </div>
   </div>
+
+  <Controls @showHeading="showHeading" />
 </template>
 
 <script>
 import Button from "../components/Button.vue";
+import Controls from "./Controls.vue";
 
 export default {
   name: "Home",
-  components: {Button}
+  components: {
+    Controls,
+    Button
+  },
+  data() {
+    return {
+      heading: 'Dead'
+    }
+  },
+  methods: {
+    showHeading(heading) {
+      console.log('It works')
+      this.heading = heading;
+    },
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
