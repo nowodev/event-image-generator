@@ -9,13 +9,20 @@
       </div>
 
       <div class="flex flex-col items-center pt-6 space-y-3">
-        <input type="date" class="px-5 py-2 w-full font-semibold rounded-lg" v-model="date" />
+        <label for="date" class="mr-auto font-semibold text-white">Date:</label>
+        <input type="date" id="date" class="px-5 py-2 w-full font-medium rounded-lg" v-model="date" />
 
-        <input type="text" class="px-5 py-2 w-full font-semibold rounded-lg placeholder-slate-700"
+        <label for="heading" class="mr-auto font-semibold text-white">Heading:</label>
+        <input type="text" id="heading" class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
                placeholder="Insert Heading" v-model="heading" />
 
-        <textarea rows="4" class="px-5 py-2 w-full font-thin rounded-lg placeholder-slate-700"
-                  placeholder="Insert Description"></textarea>
+        <label for="name" class="mr-auto font-semibold text-white">Name:</label>
+        <input type="text" id="name" class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
+               placeholder="Insert Name" v-model="name" />
+
+        <label for="description" class="mr-auto font-semibold text-white">Description:</label>
+        <textarea rows="4" id="description" class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
+                  placeholder="Insert Description" v-model="description"></textarea>
       </div>
     </div>
 
@@ -46,8 +53,9 @@ export default {
     Button
   },
   props: [
-    'heading',
     'date',
+    'heading',
+    'name',
     'description',
   ],
   methods: {
@@ -55,7 +63,7 @@ export default {
       this.toggle('controls')
       this.toggle('home')
       this.toggle('show-button')
-      this.$emit('showHeading', this.heading)
+      this.$emit('preview', [this.date, this.heading, this.name, this.description])
     },
 
     back() {
