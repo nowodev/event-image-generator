@@ -1,7 +1,7 @@
 <template>
   <div class="flex hidden flex-col items-center" id="home">
     <div class="px-3 ml-auto border-2 rotate-12">
-      <h3 class="float-right text-2xl font-bold text-white">03 FEB</h3>
+      <h3 class="float-right text-2xl font-bold text-white uppercase">{{ date }}</h3>
     </div>
 
     <div class="font-sans text-center">
@@ -12,13 +12,14 @@
       <img src="../assets/logo.png" alt="">
     </div>
 
-    <div class="mt-6">
-      <h1 class="font-sans text-7xl font-extrabold text-white uppercase">John Doe</h1>
+    <div class="mt-6 text-center">
+      <h1 class="font-sans text-4xl font-extrabold text-white uppercase">{{ name }}</h1>
+      <p class="mt-4 font-sans text-sm font-medium text-white capitalize">{{ description }}</p>
       <Button title="LCVP, MAC" />
     </div>
   </div>
 
-  <Controls @showHeading="showHeading" />
+  <Controls @preview="preview" />
 </template>
 
 <script>
@@ -33,13 +34,18 @@ export default {
   },
   data() {
     return {
-      heading: 'Dead'
+      date: '',
+      heading: '',
+      name: '',
+      description: '',
     }
   },
   methods: {
-    showHeading(heading) {
-      console.log('It works')
-      this.heading = heading;
+    preview(data) {
+      this.date = new Date(data[0]).toDateString();
+      this.heading = data[1];
+      this.name = data[2];
+      this.description = data[3];
     },
   }
 }
