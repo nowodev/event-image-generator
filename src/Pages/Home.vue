@@ -42,10 +42,12 @@ export default {
   },
   methods: {
     preview(data) {
-      this.date = new Date(data[0]).toDateString();
-      this.heading = data[1];
-      this.name = data[2];
-      this.description = data[3];
+      const d = new Date(data[0]).toDateString();
+      this.date = d === 'Invalid Date' ? '---' : d
+      this.heading = data[1] ?? '---';
+      this.name = data[2] ?? '---';
+      this.description = data[3] ?? '---';
+      console.log(d)
     },
   }
 }
