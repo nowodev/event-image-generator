@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between pt20">
+  <div class="flex justify-between pt-12">
     <button class="w-10 h-10 bg-red-500 rounded-full"></button>
     <button class="w-10 h-10 bg-blue-500 rounded-full"></button>
     <button class="w-10 h-10 bg-indigo-500 rounded-full"></button>
