@@ -38,10 +38,14 @@
       <button class="w-10 h-10 bg-orange-500 rounded-full"></button>
     </div>
 
-    <Button @click="generate" title="generate" />
+    <div class="text-center py-12">
+      <Button @click="generate" title="generate" />
+    </div>
   </div>
 
-  <Button @click="back" class="hidden" title="Back" id="show-button" />
+  <div class="text-center py-12 hidden" id="show-button">
+    <Button @click="back" title="Back" />
+  </div>
 </template>
 
 <script>
