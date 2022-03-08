@@ -1,29 +1,30 @@
 <template>
-    <div id="controls">
+    <div :class="gen ? 'hidden' : 'block'">
         <div class="flex flex-col items-center">
-            <div class="p-4 mx-4 bg-white rounded-2xl shadow-lg lg:mx-0 lg:p-16 shadow-cyan-500/50" id="image">
+            <div id="image" class="p-4 mx-4 bg-white rounded-2xl shadow-lg lg:mx-0 lg:p-16 shadow-cyan-500/50">
                 <input
-                        type="file"
                         class="accent-slate-500 p-1.5 lg:p-6 border w-full font-bold border-cyan-500/50 rounded-lg transition ease-in-out"
+                        type="file"
                 />
             </div>
 
             <div class="flex flex-col items-center pt-6 space-y-3">
-                <label for="date" class="mr-auto font-semibold text-white">Date:</label>
-                <input type="date" id="date" class="px-5 py-2 w-full font-medium rounded-lg" v-model="date" />
+                <label class="mr-auto font-semibold text-white" for="date">Date:</label>
+                <input id="date" v-model="date" class="px-5 py-2 w-full font-medium rounded-lg" type="date" />
 
-                <label for="heading" class="mr-auto font-semibold text-white">Heading:</label>
-                <input type="text" id="heading" class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
-                       placeholder="Insert Heading" v-model="heading" />
+                <label class="mr-auto font-semibold text-white" for="heading">Heading:</label>
+                <input id="heading" v-model="heading"
+                       class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
+                       placeholder="Insert Heading" type="text" />
 
-                <label for="name" class="mr-auto font-semibold text-white">Name:</label>
-                <input type="text" id="name" class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
-                       placeholder="Insert Name" v-model="name" />
+                <label class="mr-auto font-semibold text-white" for="name">Name:</label>
+                <input id="name" v-model="name" class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
+                       placeholder="Insert Name" type="text" />
 
-                <label for="description" class="mr-auto font-semibold text-white">Description:</label>
-                <textarea rows="4" id="description"
+                <label class="mr-auto font-semibold text-white" for="description">Description:</label>
+                <textarea id="description" v-model="description"
                           class="px-5 py-2 w-full font-medium rounded-lg placeholder-slate-700"
-                          placeholder="Insert Description" v-model="description"></textarea>
+                          placeholder="Insert Description" rows="4"></textarea>
             </div>
         </div>
 
@@ -39,51 +40,54 @@
             <button class="w-10 h-10 bg-orange-500 rounded-full"></button>
         </div>
 
-        <div class="text-center py-12">
-            <Button @click="generate" title="generate" />
+        <div class="py-12 text-center">
+            <Button title="generate" @click="generate" />
         </div>
     </div>
 
-    <div class="text-center py-12 hidden" id="show-button">
-        <Button @click="back" title="Back" />
+    <div :class="hide ? 'hidden' : 'block'" class="py-12 text-center">
+        <Button title="Back" @click="back" />
     </div>
 </template>
 
 <script>
-import Button from "../components/Button.vue";
+    import Button from "../components/Button.vue";
 
-export default {
-    name: "Controls.vue",
-    components: {
-        Button
-    },
-    props: [
-        'date',
-        'heading',
-        'name',
-        'description',
-    ],
-    methods: {
-        generate() {
-            this.toggle('controls')
-            this.toggle('home')
-            this.toggle('show-button')
-            this.$emit('preview', [this.date, this.heading, this.name, this.description])
+    export default {
+        name: "Controls",
+
+        components: {
+            Button
         },
 
-        back() {
-            this.toggle('home')
-            this.toggle('controls')
-            this.toggle('show-button')
+        props: [
+            'date',
+            'heading',
+            'name',
+            'description',
+        ],
+
+        data() {
+            return {
+                'gen': false,
+                'hide': true,
+            }
         },
 
-        toggle(id) {
-            const value = document.getElementById(id);
-            // value.classList.toggle("block");
-            value.classList.toggle("hidden");
+        methods: {
+            generate: function () {
+                this.gen = !this.gen
+                this.hide = !this.hide
+                this.$emit('preview', [this.gen, this.date, this.heading, this.name, this.description])
+            },
+
+            back: function () {
+                this.hide = !this.hide
+                this.gen = !this.gen
+                this.$emit('preview', [this.gen])
+            },
         },
-    },
-}
+    }
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex hidden flex-col items-center" id="home">
+    <div class="flex flex-col items-center" :class="gen ? 'block' : 'hidden'">
         <div class="px-3 ml-auto border-2 rotate-12">
             <h3 class="float-right text-2xl font-bold text-white uppercase">{{ date }}</h3>
         </div>
@@ -23,31 +23,36 @@
 </template>
 
 <script>
-import Button from "../components/Button.vue";
-import Controls from "./Controls.vue";
+    import Button from "../components/Button.vue";
+    import Controls from "./Controls.vue";
 
-export default {
-    name: "Home",
-    components: {
-        Controls,
-        Button
+    export default {
+        name: "Home",
+
+        components: {
+            Controls,
+            Button
+        },
+
+        data() {
+            return {
+                gen: '',
+                date: '',
+                heading: '',
+                name: '',
+                description: '',
+            }
     },
-    data() {
-        return {
-            date: '',
-            heading: '',
-            name: '',
-            description: '',
-        }
-    },
+
     methods: {
         preview(data) {
-            const d = new Date(data[0]).toDateString();
+            this.gen = data[0]
+            const d = new Date(data[1]).toDateString();
             this.date = d === 'Invalid Date' ? '---' : d
-            this.heading = data[1] ?? '---';
-            this.name = data[2] ?? '---';
-            this.description = data[3] ?? '---';
-            console.log(d)
+            this.heading = data[2] ?? '---';
+            this.name = data[3] ?? '---';
+            this.description = data[4] ?? '---';
+            console.log(this.gen)
         },
     }
 }
