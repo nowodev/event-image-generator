@@ -1,10 +1,12 @@
 <script setup>
 import Background from './Layout/Background.vue';
-import Home from "./Pages/Home.vue";</script>
+import Home from "./Pages/Home.vue";
+import Preview from './Pages/Preview.vue';</script>
 
 <template>
     <Background>
-        <Home />
+        <!-- <Home /> -->
+        <Preview />
     </Background>
 </template>
 
