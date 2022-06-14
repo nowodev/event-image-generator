@@ -5,7 +5,7 @@
 		</div>
 
 
-		<div class="outline rounded w60 w-full flex flex-col mx-auto">
+		<div class="outline w-full flex flex-col mx-auto">
 			<div class="mx-auto outline w-60 justify-center flex">
 				<img src="../assets/logo.png" alt="">
 			</div>
@@ -28,3 +28,9 @@
 		</div>
 	</div>
 </template>
+
+<script>
+export default {
+	name: "Preview",
+}
+</script>

@@ -1,13 +1,18 @@
 <script setup>
 import Background from './Layout/Background.vue';
 import Home from "./Pages/Home.vue";
-import Preview from './Pages/Preview.vue';</script>
+import Preview from './Pages/Preview.vue';
+import Controls from './Pages/Controls.vue';
+</script>
 
 <template>
-    <Background>
-        <!-- <Home /> -->
-        <Preview />
-    </Background>
+    <div class="bg-slate-900">
+        <Background>
+            <!-- <Home /> -->
+            <!-- <Preview /> -->
+            <Controls />
+        </Background>
+    </div>
 </template>
 
 <style>

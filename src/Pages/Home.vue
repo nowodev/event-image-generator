@@ -24,7 +24,7 @@
 
 <script>
     import Button from "../components/Button.vue";
-    import Controls from "./Controls.vue";
+    import Controls from "./Controls-old.vue";
 
     export default {
         name: "Home",

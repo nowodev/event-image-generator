@@ -1,28 +1,19 @@
 <template>
-    <button
-            class="px-6 py-3 font-bold text-white capitalize rounded-lg shadow-md focus:ring-2 hover:transition hover:delay-75 hover:scale-110 shadow-cyan-500/50"
-            :class="classes"
-    >
-        {{ title }}
+    <button :type="type" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+        <slot></slot>
     </button>
 </template>
 
 <script>
-export default {
-    props: {
-        title: {
-            type: String,
-            default: 'Button'
-        },
-        color: {
-            type: String,
-            default: 'bg-sky-600 hover:bg-sky-900'
-        },
-    },
-    computed: {
-        classes() {
-            return this.color
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
+        name: "Button",
+        props: {
+            type: {
+                type: String,
+                default: 'submit',
+            },
         }
-    }
-}
+    })
 </script>
